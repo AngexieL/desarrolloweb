@@ -3,9 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle del Producto - TechSpot-electronics</title>
+    <title>Detalles del Producto - TechSpot-electronics</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+
+            const products = {
+                1: {
+                    name: 'Smartphone X',
+                    price: '$699.99',
+                    description: 'Smartphone con pantalla de 6.5 pulgadas y cámara de 48 MP.',
+                    image: 'smartphone.jpg'
+                },
+                2: {
+                    name: 'Laptop Y',
+                    price: '$1299.99',
+                    description: 'Laptop potente con procesador i7 y 16GB de RAM.',
+                    image: 'laptop.jpeg'
+                },
+                3: {
+                    name: 'Auriculares Z',
+                    price: '$299.99',
+                    description: 'Auriculares inalámbricos con cancelación de ruido.',
+                    image: 'auriculares.jpg'
+                },
+                4: {
+                    name: 'Tablet W',
+                    price: '$349.99',
+                    description: 'Tablet con pantalla de 10.1 pulgadas y 64GB de almacenamiento.',
+                    image: 'tablet.avif'
+                },
+                5: {
+                    name: 'Reloj Inteligente V',
+                    price: '$199.99',
+                    description: 'Reloj inteligente con monitoreo de actividad y notificaciones.',
+                    image: 'relo.jpg'
+                }
+            };
+
+            const product = products[productId];
+            if (product) {
+                document.getElementById('product-image').src = product.image;
+                document.getElementById('product-name').textContent = product.name;
+                document.getElementById('product-price').textContent = product.price;
+                document.getElementById('product-description').textContent = product.description;
+
+                // Establecer el enlace del botón "Agregar al Carrito"
+                document.getElementById('add-to-cart').href = `carrito.html?add=${productId}`;
+            } else {
+                document.getElementById('product-details').innerHTML = '<p>Producto no encontrado.</p>';
+            }
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -30,13 +82,14 @@
     <main class="container my-5">
         <div class="row">
             <div class="col-md-6">
-                <img src="ruta-imagen.jpg" class="img-fluid" alt="Producto">
+                <img id="product-image" src="" class="img-fluid" alt="Producto">
             </div>
             <div class="col-md-6">
-                <h1>Nombre del Producto</h1>
-                <p class="lead">Descripción detallada del producto...</p>
-                <h3>Precio: $XXX</h3>
-                <a href="carrito.html" class="btn btn-primary">Añadir al Carrito</a>
+                <h1 id="product-name"></h1>
+                <p id="product-price"></p>
+                <p id="product-description"></p>
+                <a href="catalogo.html" class="btn btn-secondary">Volver al Catálogo</a>
+                <a id="add-to-cart" href="#" class="btn btn-primary mt-3">Agregar al Carrito</a>
             </div>
         </div>
     </main>
